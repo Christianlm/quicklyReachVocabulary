@@ -1,4 +1,6 @@
-﻿
+﻿# -*- coding: UTF-8 -*-
+#Copyright © 2017 released under gPL.
+
 import globalPluginHandler
 import textInfos
 import NVDAObjects
@@ -11,7 +13,7 @@ tree = ET.ElementTree(file=os.path.join("globalPlugins", "qrvocabulary", "ejempl
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
-	def script_finder(self, gesture):
+	def script_getMeaning(self, gesture):
 		obj=api.getFocusObject()
 		treeInterceptor=obj.treeInterceptor
 		if hasattr(treeInterceptor,'TextInfo') and not treeInterceptor.passThrough:
@@ -24,7 +26,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			ui.message(_("no selection"))
 		else:
 			ui.message(_("searching  the meaning of %s")%info.text)
-			#str.split(info.text)
 			kwrd = info.text
 
 			tree.getroot()
@@ -36,5 +37,5 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					ui.message("%s" % lemma.text )
 
 	__gestures = {
-	"kb:NVDA+j": "finder",
+	"kb:NVDA+j": "getMeaning",
 }
