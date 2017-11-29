@@ -17,7 +17,7 @@ addon_info = {
 	"addon_summary" : _("Quickly reach vocabulary"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description" : _("Allows you to quickly reach the meaning of a selected word."),
+	"addon_description" : _("Allows you to quickly reach the meaning of the  selected word."),
 	# version
 	"addon_version" : "0.1-dev",
 	# Author(s)
@@ -33,7 +33,7 @@ import os.path
 
 # Define the python files that are the sources of your add-on.
 # You can use glob expressions here, they will be expanded.
-pythonSources = [os.path.join("addon", "*.py")]
+pythonSources = [os.path.join("addon", "*.py"), os.path.join("addon", "globalPlugins", "qrvocabulary", "*.py")]
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
