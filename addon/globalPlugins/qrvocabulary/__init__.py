@@ -12,12 +12,20 @@ import NVDAObjects
 import api
 import ui
 import os
-#from vocabulary.es_voc import lemmas
-from vocabulary.ita_voc import lemmas
-
+import cPickle
 addonHandler.initTranslation()
 
+vocabulary_path = os.path.join(os.path.dirname(__file__), "vocabulary")
+
+def loadVocabulary():
+
+	with open(os.path.join(vocabulary_path, "esp.pkl"), "rb") as output:
+		lemmas = cPickle.load(output)
+	#except (EOFError, OSError, IOError):
+	return lemmas
+
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+
 	def script_findMeaning(self, gesture):
 		obj=api.getFocusObject()
 		treeInterceptor=obj.treeInterceptor
@@ -33,12 +41,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			str = info.text
 			kwrd = str.lower().strip()
+			lemmas =loadVocabulary() 
 			if lemmas.has_key(kwrd):
 				ui.message("%s" %lemmas.get(kwrd))
 			else:
 				# Translator: message when the searched word is not present in the dictionary.
 				ui.message(_("no match found for this word! "))
-	# Translators: message presented in input mode, when a keystroke of an addon script is pressed.
+	# Translators: message presented in input mode, when a keystroke of this addon script is pressed.
 	script_findMeaning.__doc__ = _("Announces the meaning of selected word.")
 
 	__gestures = {
