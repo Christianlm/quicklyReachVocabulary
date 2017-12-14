@@ -93,7 +93,7 @@ class vocabularySettingsDialog(gui.SettingsDialog):
 		# Translators: The label for  list in the vocabulary setting dialog.
 		myVocabularyLabel = wx.StaticText(self, label=_("Select your Vocabulary:"))
 		myVocabularySizer.Add(myVocabularyLabel)
-		self._myVocabularyChoice = wx.Choice(self, choices=LIST_VOCS)   #[vocabularies[vocs] for vocs in vocabularies])
+		self._myVocabularyChoice = wx.Choice(self, choices=LIST_VOCS)
 		self._myVocabularyChoice.SetStringSelection("myVocabulary")
 		myVocabularySizer.Add(self._myVocabularyChoice)
 		sizer.Add(myVocabularySizer)
