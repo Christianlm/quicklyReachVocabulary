@@ -17,6 +17,7 @@ import config
 import wx
 import gui
 from gui.settingsDialogs import SettingsDialog
+from gui import guiHelper
 from logHandler import log
 import scriptHandler
 import configobj
@@ -29,8 +30,14 @@ ADDON_DIR = os.path.dirname(__file__)
 VOCS_DIR = os.path.join(ADDON_DIR, "vocabulary")
 LIST_VOCS = [os.path.split(path)[-1] for path in glob.glob(os.path.join(VOCS_DIR, '*.pkl'))]
 
+confspec = {
+	'myvocabulary': 'string(default="esp.pkl")',
+}
+config.conf.spec["vocabulary"] = confspec
+
+
 def loadVocabulary():
-	vocName = getVocabularies()
+	vocName = config.conf["vocabulary"]["myvocabulary"]
 	try:
 		output = open(os.path.join(VOCS_DIR, vocName), "rb")
 		lemmas = cPickle.load(output)
@@ -64,76 +71,33 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	# Translators: message presented in input mode, when a keystroke of this addon script is pressed.
 	script_findMeaning.__doc__ = _("Announces the meaning of selected word.")
 
-	def onVocabularyDialog(self,evt):
+	def onVocabularySettingsDialog(self, evt):
 		gui.mainFrame._popupSettingsDialog(vocabularySettingsDialog)
 
-	def script_vocabularySettingsDialog(self, gesture):
-		wx.CallAfter(self.onVocabularyDialog, None)
+	def script_vocabularySettings(self, gesture):
+		wx.CallAfter(self.onVocabularySettingsDialog, None)
 	# Translators: Input help mode message for go to Vocabulary  dialog.
-	script_vocabularySettingsDialog.__doc__ = _("Shows the list of available vocabularies")
+	script_vocabularySettings.__doc__ = _("Shows the list of available vocabularies")
 
 	__gestures = {
 		"kb:NVDA+shift+f7": "findMeaning",
-		"kb:NVDA+shift+f8": "vocabularySettingsDialog",
+		"kb:NVDA+shift+f8": "vocabularySettings",
 	}
 
 
-
-# vocabularies = {"esp.pkl": "Diccionario de la lengua Española", "ita.pkl": "Dizionario Italiano",}
-
 class vocabularySettingsDialog(gui.SettingsDialog):
-	# Translators: Title of the vocabulary setting dialog.
+	# Translators: Title of the vocabulary settings dialog.
 	title = _("Vocabulary Settings")
-
-	def __init__(self, parent):
-		super(vocabularySettingsDialog, self).__init__(parent)
-
-	def makeSettings(self, sizer):
-		myVocabularySizer = wx.BoxSizer(wx.VERTICAL)
-		# Translators: The label for  list in the vocabulary setting dialog.
-		myVocabularyLabel = wx.StaticText(self, label=_("Select your Vocabulary:"))
-		myVocabularySizer.Add(myVocabularyLabel)
-		self._myVocabularyChoice = wx.Choice(self, choices=LIST_VOCS)
-		self._myVocabularyChoice.SetStringSelection("myVocabulary")
-		myVocabularySizer.Add(self._myVocabularyChoice)
-		sizer.Add(myVocabularySizer)
+	def makeSettings(self, settingsSizer):
+		vocabularySettingsGuiHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+		# Translators: The label for  list in the vocabulary settings dialog.
+		self._myvocabularyChoice = vocabularySettingsGuiHelper.addLabeledControl(_("Select your Vocabulary:"), wx.Choice, choices=LIST_VOCS)
+		self._myvocabularyChoice.SetStringSelection(config.conf["vocabulary"]["myvocabulary"])
 
 	def postInit(self):
-		self._myVocabularyChoice.SetFocus()
+		self._myvocabularyChoice.SetFocus()
 
-	def onOk(self, event):
-		super(vocabularySettingsDialog, self).onOk(event)
-		getConfig()["vocabulary"]["myVocabulary"] = self._myVocabularyChoice.GetStringSelection()
-		try:
-			getConfig().write()
-		except IOError:
-			log.error("Error writing  configuration", exc_info=True)
-		loadUpSetting()
-
-_config = None
-configspec = StringIO("""
-[vocabulary]
-myVocabulary=string(default="esp.pkl")
-""")
-
-def getConfig():
-	global _config
-	if not _config:
-		path = os.path.join(config.getUserDefaultConfigPath(), "vocabulary.ini")
-		_config = configobj.ConfigObj(path, configspec=configspec)
-		val = validate.Validator()
-		_config.validate(val)
-	return _config
-
-myVocabulary = None
-def getVocabularies():
-	return getConfig()["vocabulary"]["myVocabulary"]
-
-def setVocabularies():
-	global myVocabulary
-	myVocabulary = getVocabularies()
-
-def loadUpSetting():
-	setVocabularies()
-
+	def onOk(self, evt):
+		config.conf["vocabulary"]["myvocabulary"]=self._myvocabularyChoice.GetStringSelection()
+		super(vocabularySettingsDialog, self).onOk(evt)
 
