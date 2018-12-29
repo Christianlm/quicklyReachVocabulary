@@ -17,15 +17,21 @@ addon_info = {
 	"addon_summary" : _("Quickly reach vocabulary"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description" : _("Allows you to quickly reach the meaning of the  selected word from the available vocabularies."),
+	"addon_description" : _("""Allows you to quickly reach the meaning of the  selected word from the available vocabularies."""),
 	# version
-	"addon_version" : "0.3-dev",
+	"addon_version" : "0.5dev",
 	# Author(s)
 	"addon_author" : u"Chris Leo <llajta2012@gmail.com>",
 	# URL for the add-on documentation support
-	"addon_url" : "http://addons.nvda-project.org",
+	"addon_url" : None,
 	# Documentation file name
 	"addon_docFileName" : "readme.html",
+	# Minimum NVDA version supported (e.g. "2018.3")
+	"addon_minimumNVDAVersion" : "2018.4",
+	# Last NVDA version supported/tested (e.g. "2018.4", ideally more recent than minimum version)
+	"addon_lastTestedNVDAVersion" : "2019.1",
+	# Add-on update channel (default is stable or None)
+	"addon_updateChannel" : None,
 }
 
 
