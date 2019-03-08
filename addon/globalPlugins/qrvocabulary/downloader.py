@@ -24,12 +24,12 @@ import zipfile
 
 addonHandler.initTranslation()
 
-URL_DOWNLOAD = "https://github.com/Christianlm/quicklyReachVocabulary/raw/master/vocabulary20190215.zip"
+URL_DOWNLOAD = "https://github.com/Christianlm/quicklyReachVocabulary/raw/master/vocabulary20190308.zip"
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 PLUGIN_DIR = os.path.join(ROOT_DIR)
 VOCS_DIR = os.path.join(ROOT_DIR, "vocabulary")
 DL_VOC_DIR = os.path.join(globalVars.appArgs.configPath)
-dest = os.path.join(DL_VOC_DIR, "vocabulary20190215.zip")
+dest = os.path.join(DL_VOC_DIR, "vocabulary20190308.zip")
 vocsFiles = set()
 VOCS_FILES = ["ita.pkl", "esp.pkl"]
 
@@ -125,7 +125,7 @@ class downloadDialog(wx.Dialog):
 
 	def installVocs(self):
 		for zfn in vocsFiles:
-			if fnmatch.fnmatch(zfn, "*/vocabulary20190215.zip"):
+			if fnmatch.fnmatch(zfn, "*/vocabulary20190308.zip"):
 				break
 		else:
 			assert False
