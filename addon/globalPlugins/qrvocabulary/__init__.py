@@ -27,9 +27,9 @@ import threading
 import tones
 import ui
 import wx
-""" Development code   for download and instal the vocabularies.
-from . import warning
-"""
+# Development code   for download and instal the vocabularies.
+from . import downloader
+
 
 addonHandler.initTranslation()
 # paths:
@@ -77,11 +77,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 
-		""" Development menu for download and instal the vocabularies.
+	# Development menu for download and instal the vocabularies.
 		self.toolsMenu = gui.mainFrame.sysTrayIcon.toolsMenu
 		self.vocabulary = self.toolsMenu.Append(wx.ID_ANY, _("Download Vocabularies."), _("Download Vocabularies..."))
-		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, warning.notice, self.vocabulary)
-		"""
+		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, downloader.toDownloader, self.vocabulary)
+
 
 		NVDASettingsDialog.categoryClasses.append(vocabularySettingsPanel)
 
@@ -117,7 +117,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			ui.message(_("Please, select a word!"))
 		else:
 			str = info.text
-			kwrd = str.lower().strip()
+			kwrd = str.lower().strip('\'\"-,.:;!? ')
 			threading.Thread(target=self.findMeaning, args=(kwrd,)).start()
 
 	# script for clipboard searching
@@ -136,7 +136,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			#translators: message spoken when the clipboard is empty
 			ui.message(_("There is no text on the clipboard"))
 		else:
-			threading.Thread(target=self.findMeaning, args=(text,)).start()
+			str = text
+			w = str.split()
+			ws=len(w)
+			if ws > 1:
+				tones.beep(330, 120, 30, 30)
+				# Translators: message when there is more than one word on clipboard.
+				ui.message(_("Too much text on clipboard. Invalid keyword."))
+			else:
+				kwrd = str.lower().strip('\'\"-,.:;!? ')
+				threading.Thread(target=self.findMeaning, args=(kwrd,)).start()
 
 	# Script to copy on clipboard.
 	@script(
@@ -147,11 +156,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	)
 	def script_copyClipboard(self, gesture):
 		if memo:
-			m=scriptHandler.getLastScriptRepeatCount()
-			if m==0:
-				api.copyToClip(memo)
-				tones.beep(540, 220)
-				ui.message(_("Copied."))
+			if scriptHandler.getLastScriptRepeatCount() == 0:
+				ui.message(memo)
+			elif scriptHandler.getLastScriptRepeatCount() == 1:
+				# Translators: title of browseable message box.
+				ui.browseableMessage(".\n".join(memo.split(". ")), _("From {vocs}").format(vocs=getVocsName()[config.conf["vocabulary"]["myvocabulary"]]))
 		else:
 			#translators: message when  there are no recent searches in the vocabulary
 			ui.message(_("There is no recent research in the vocabulary."))
@@ -165,7 +174,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			lemmas =loadVocabulary() 
 			if kwrd in lemmas.keys():
-				memo=(_('Found "{thisword}": %s').format(thisword = kwrd) %lemmas.get(kwrd))
+				memo=(_('Found "{thisword}":\n %s').format(thisword = kwrd) %lemmas.get(kwrd))
 				ui.message(memo)
 			else:
 				# Translator: message when the searched word is not present in the dictionary.
