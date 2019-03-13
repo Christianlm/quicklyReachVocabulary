@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-#v. 0.5.3A Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
-# Quickly Reach Vocabulary add-on for NVDA SCREEN READER.
+# Quickly Reach Vocabulary v. 0.5.5 add-on for NVDA SCREEN READER.
+# Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
 #See the file COPYING for more details.
@@ -147,14 +147,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				kwrd = str.lower().strip('\'\"-,.:;!? ')
 				threading.Thread(target=self.findMeaning, args=(kwrd,)).start()
 
-	# Script to copy on clipboard.
+	# Script to retrieve the last result .
 	@script(
 		# Translators: Message presented in input help mode.
-		description=_("Copies on clipboard the last meaning found in the vocabulary."),
+		description=_("Retrieves the last result found in the vocabulary."),
 		gesture="kb:NVDA+shift+f9",
 		category = SCRCAT_TOOLS
 	)
-	def script_copyClipboard(self, gesture):
+	def script_lastResult(self, gesture):
 		if memo:
 			if scriptHandler.getLastScriptRepeatCount() == 0:
 				ui.message(memo)
