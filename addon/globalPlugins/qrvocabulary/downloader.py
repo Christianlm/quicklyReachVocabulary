@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Quickly Reach Vocabulary v. 0.5.5 add-on for NVDA SCREEN READER.
+# Quickly Reach Vocabulary v. 0.6.0 add-on for NVDA SCREEN READER.
 # Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
@@ -147,8 +147,9 @@ class downloadDialog(wx.Dialog):
 					pass
 				with zf.open(realFn) as inf, file(extractFn, "wb") as outf:
 					shutil.copyfileobj(inf, outf)
-
+				# Translators: installation  message
 				gui.messageBox(_("Installed %s") % fn,
+				# Translators: Title of warning dialog.
 				_("Success!"),
 				wx.OK)
 
