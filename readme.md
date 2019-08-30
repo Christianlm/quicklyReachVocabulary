@@ -1,7 +1,7 @@
 # Quickly Reach Vocabulary #
 
 * Authors: Christian Leo llajta2012ATgmail.com
-* NVDA compatibility: 2018.4 to 2019.1
+* NVDA compatibility: 2019.3
 
 Allows you to quickly reach the meaning of a selected word.
 

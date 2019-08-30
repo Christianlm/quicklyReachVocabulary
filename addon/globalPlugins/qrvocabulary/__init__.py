@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Quickly Reach Vocabulary v. 0.6.0 add-on for NVDA SCREEN READER.
+# Quickly Reach Vocabulary v. 0.6.1 py3 add-on for NVDA SCREEN READER.
 # Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
@@ -8,7 +8,10 @@
 
 import addonHandler
 import api
-import cPickle
+try:
+	import cPickle as pickle
+except ImportError:
+	import pickle
 import config
 import configobj
 import glob
@@ -67,7 +70,7 @@ def loadVocabulary():
 	vocName = vocsfiles[config.conf["vocabulary"]["myvocabulary"]]
 	try:
 		output = open(os.path.join(VOCS_DIR, vocName), "rb")
-		lemmas = cPickle.load(output)
+		lemmas = pickle.load(output)
 	except(EOFError, OSError, IOError):
 		pass
 	return lemmas
@@ -130,21 +133,21 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def script_fromClip(self, gesture):
 		try:
 			text = api.getClipData()
-		except TypeError:
+		except:
 			text = None
-		if not text or not isinstance(text,basestring):
+		if not text or not isinstance(text, str):
 			#translators: message spoken when the clipboard is empty
 			ui.message(_("There is no text on the clipboard"))
 		else:
-			str = text
-			w = str.split()
+			s = text
+			w = s.split()
 			ws=len(w)
 			if ws > 1:
 				tones.beep(330, 120, 30, 30)
 				# Translators: message when there is more than one word on clipboard.
 				ui.message(_("Too much text on clipboard. Invalid keyword."))
 			else:
-				kwrd = str.lower().strip('\'\"-,.:;!? ')
+				kwrd = s.lower().strip('\'\"-,.:;!? ')
 				threading.Thread(target=self.findMeaning, args=(kwrd,)).start()
 
 	# Script to retrieve the last result .
