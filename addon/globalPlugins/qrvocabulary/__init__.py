@@ -100,7 +100,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Translators: Message presented in input help mode.
 		description=_("Announces the meaning of selected word found in the vocabulary."),
 		category = SCRCAT_TOOLS,
-		gesture="kb:NVDA+shift+f7"
+		gesture="kb:NVDA+alt+f7"
 	)
 
 	def script_fromWordSelected(self, gesture):
@@ -125,7 +125,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Translators: Message presented in input help mode.
 		description=_("Search in the vocabulary the meaning of the word on clipboard."),
 		category = SCRCAT_TOOLS,
-		gesture="kb:NVDA+shift+f8"
+		gesture="kb:NVDA+alt+f8"
 	)
 	def script_fromClip(self, gesture):
 		try:
@@ -151,7 +151,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(
 		# Translators: Message presented in input help mode.
 		description=_("Retrieves the last result found in the vocabulary."),
-		gesture="kb:NVDA+shift+f9",
+		gesture="kb:NVDA+alt+f9",
 		category = SCRCAT_TOOLS
 	)
 	def script_lastResult(self, gesture):
