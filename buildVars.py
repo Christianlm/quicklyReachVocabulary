@@ -19,15 +19,15 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""Allows you to quickly reach the meaning of the  selected word from the available vocabularies."""),
 	# version
-	"addon_version" : "0.6.1-alpha",
+	"addon_version" : "0.7-dev",
 	# Author(s)
 	"addon_author" : u"Chris Leo <llajta2012@gmail.com>",
 	# URL for the add-on documentation support
-	"addon_url" : None,
+	"addon_url" : "https://github.com/Christianlm",
 	# Documentation file name
 	"addon_docFileName" : "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3")
-	"addon_minimumNVDAVersion" : "2018.4.0",
+	"addon_minimumNVDAVersion" : "2019.3.0",
 	# Last NVDA version supported/tested (e.g. "2018.4", ideally more recent than minimum version)
 	"addon_lastTestedNVDAVersion" : "2019.3.0",
 	# Add-on update channel (default is stable or None)
@@ -46,4 +46,5 @@ i18nSources = pythonSources + ["buildVars.py"]
 
 # Files that will be ignored when building the nvda-addon file
 # Paths are relative to the addon directory, not to the root directory of your addon sources.
-excludedFiles = []
+excludedFiles = [os.path.join('locale', 'it', 'LC_MESSAGES', 'nvda.po'),
+os.path.join('doc', 'it', 'readme.md')]

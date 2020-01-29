@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-# Quickly Reach Vocabulary v. 0.6.1 py3 add-on for NVDA SCREEN READER.
-# Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
+# Quickly Reach Vocabulary v. 0.7-dev py3 add-on for NVDA SCREEN READER.
+# Copyright (C)2017-2020 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
 #See the file COPYING for more details.
@@ -17,7 +17,6 @@ import configobj
 import glob
 import globalPluginHandler
 import globalVars
-from globalCommands import SCRCAT_TOOLS, SCRCAT_CONFIG
 import gui
 from gui import SettingsPanel, NVDASettingsDialog, guiHelper
 from logHandler import log
@@ -33,22 +32,24 @@ import wx
 # Development code   for download and instal the vocabularies.
 from . import downloader
 
-
 addonHandler.initTranslation()
+
 # paths:
 ADDON_DIR = os.path.dirname(__file__)
 VOCS_DIR = os.path.join(ADDON_DIR, "vocabulary")
 LIST_VOCS = [os.path.split(path)[-1] for path in glob.glob(os.path.join(VOCS_DIR, '*.pkl'))]
 # configuration:
 confspec = {
-	'myvocabulary': 'integer(default=0)',
+	'myvocabulary': 'integer(default=1)',
 }
 config.conf.spec["vocabulary"] = confspec
+
+ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
+
 # Dictionaries for vocabulary names, iteritems using "six" library.
 vocabularies = {
 _("Spanish Vocabulary"): "esp.pkl",
-_("Italian Vocabulary"): "ita.pkl",
-"default": "_temp.dat"
+_("Italian Vocabulary"): "ita.pkl"
 }
 import six
 tVocabularies = {v : k for k, v in six.iteritems(vocabularies)}
@@ -77,6 +78,11 @@ def loadVocabulary():
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
+	try:
+		scriptCategory = unicode(ADDON_SUMMARY)
+	except NameError:
+		scriptCategory = str(ADDON_SUMMARY)
+
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 
@@ -102,8 +108,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(
 		# Translators: Message presented in input help mode.
 		description=_("Announces the meaning of selected word found in the vocabulary."),
-		category = SCRCAT_TOOLS,
-		gesture="kb:NVDA+shift+f7"
+		gesture="kb:NVDA+alt+f7"
 	)
 
 	def script_fromWordSelected(self, gesture):
@@ -127,8 +132,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(
 		# Translators: Message presented in input help mode.
 		description=_("Search in the vocabulary the meaning of the word on clipboard."),
-		category = SCRCAT_TOOLS,
-		gesture="kb:NVDA+shift+f8"
+		gesture="kb:NVDA+alt+f8"
 	)
 	def script_fromClip(self, gesture):
 		try:
@@ -154,8 +158,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(
 		# Translators: Message presented in input help mode.
 		description=_("Retrieves the last result found in the vocabulary."),
-		gesture="kb:NVDA+shift+f9",
-		category = SCRCAT_TOOLS
+		gesture="kb:NVDA+alt+f9",
 	)
 	def script_lastResult(self, gesture):
 		if memo:
@@ -189,7 +192,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(
 		# Translators: Message presented in input help mode.
 		description=_("Shows settings for available vocabularies."),
-		category = SCRCAT_CONFIG
 	)
 	def script_settings(self, gesture):
 		wx.CallAfter(self.onSettings, None)
