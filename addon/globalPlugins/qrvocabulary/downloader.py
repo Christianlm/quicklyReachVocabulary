@@ -20,7 +20,8 @@ try:
 except:
 	from urllib.request import urlopen
 import wx
-import zipfile
+# import zipfile
+from zipfile import ZipFile
 
 addonHandler.initTranslation()
 
@@ -73,7 +74,7 @@ class downloadDialog(wx.Dialog):
 			localPath = os.path.join(DL_VOC_DIR, fn)
 			vocsFiles.add(localPath)
 			if os.path.isfile(localPath):
-				gui.messageBox(_(" Already downloaded! %s") % fn,
+				gui.messageBox(_(" Already downloaded! %s, press Ok to install.") % fn,
 				_("Warning"),
 				wx.OK)
 			else:
@@ -124,34 +125,13 @@ class downloadDialog(wx.Dialog):
 				return keepGoing
 
 	def installVocs(self):
-		for zfn in vocsFiles:
-			if fnmatch.fnmatch(zfn, "*/vocabulary20190308.zip"):
-				break
-		else:
-			assert False
-
-		vocsDir = os.path.join(PLUGIN_DIR, "vocabulary")
-		shutil.rmtree(vocsDir, ignore_errors=True)
-		with zipfile.ZipFile(zfn) as zf:
-			for realFn in zf.namelist():
-				if realFn.endswith("/"):
-					continue
-				# Strip the top level distribution directory.
-				fn = realFn.split("/", 0)[0]
-				extractFn = os.path.join(vocsDir, fn.replace("/", os.path.sep))
-				if not any(fnmatch.fnmatch(fn, pattern) for pattern in VOCS_FILES):
-					continue
-				try:
-					os.makedirs(os.path.dirname(extractFn))
-				except OSError:
-					pass
-				with zf.open(realFn) as inf, file(extractFn, "wb") as outf:
-					shutil.copyfileobj(inf, outf)
-				# Translators: installation  message
-				gui.messageBox(_("Installed %s") % fn,
-				# Translators: Title of warning dialog.
-				_("Success!"),
-				wx.OK)
+		with ZipFile(dest,"r") as zip_ref:
+			zip_ref.extractall(os.path.join(PLUGIN_DIR, "vocabulary"))
+		# Translators: installation  message
+		gui.messageBox(_("Setup was completed successfully!"),
+		# Translators: Title of warning dialog.
+		_("Vocabularies setup: "),
+		wx.OK)
 
 
 def toDownloader(evt):

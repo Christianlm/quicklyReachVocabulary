@@ -1,9 +1,9 @@
 # Quickly Reach Vocabulary #
 
 *	Authors: Christian Leo llajta2012ATgmail.com
-*	NVDA compatibility: 2018.4 to 2019.2.1
+*	NVDA compatibility:2019.3
 
-Allows you to quickly reach the meaning of a selected word.
+Allows you to quickly reach the meaning of a selected word, or open an edit box to search from the vocabulary.
 
 ##Usage:##
 
@@ -14,10 +14,12 @@ From NVDA setting dialog you can select a vocabulary below Vocabulary settings c
 
 Select a word and press NVDA+Alt+F7: NVDA searches the meaning of the selected word, and says it if is available.
 
+If no words are selected, an editable search box opens.
+
 Other commands are:
 
-*	NVDA+Alt+F8: If there is a word on clipboard, NVDA looks for the meaning of that word;
-*	NVDA+Alt+F9: announces last search result , press twice to open a browseable message.
+*	NVDA+Alt+F8: announces last search result , press twice to open a browseable message.
+*	not assigned: If there is a word on clipboard, NVDA looks for the meaning of that word;
 *	Is also available one script to open the setting panel to choose your vocabulary.
 
 You can assign the key to the script under the configuration category, and under tools category for change your personal gestures.
