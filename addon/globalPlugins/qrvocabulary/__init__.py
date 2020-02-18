@@ -94,10 +94,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		NVDASettingsDialog.categoryClasses.append(vocabularySettingsPanel)
 
 	def terminate(self):
-		NVDASettingsDialog.categoryClasses.remove(vocabularySettingsPanel)
-
 		try:
 			self.toolsMenu.Remove(self.vocabulary)
+			NVDASettingsDialog.categoryClasses.remove(vocabularySettingsPanel)
 		except: #(RuntimeError, AttributeError, wx.PyDeadObjectError):
 			pass
 
