@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 # Quickly Reach Vocabulary v. 0.8-dev py3 add-on for NVDA SCREEN READER.
+# Last update 21 feb 2020 11:00.
 # Copyright (C)2017-2020 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
@@ -234,8 +235,10 @@ class vocSearchDialog(wx.Dialog):
 		self.CentreOnScreen()
 
 	def onOk(self, evt):
-		kwrd = self.searchWordEdit.GetValue()
 		global memo
+		tx = self.searchWordEdit.GetValue()
+		kwrd = tx.lower().strip('\'\"-,.:;!? ')
+
 
 		lemmas =loadVocabulary() 
 		if kwrd in lemmas.keys():
