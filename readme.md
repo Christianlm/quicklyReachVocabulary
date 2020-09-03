@@ -5,7 +5,7 @@
 
 Allows you to quickly reach the meaning of a selected word, or open an edit box to search from the vocabulary.
 
-##Usage:##
+## Usage: ##
 
 First, you need to get the vocabularies.
 From menu Tools choose Download Vocabularies item and follow the short procedure to download and install.
@@ -24,7 +24,7 @@ Other commands are:
 
 You can assign the key to the script under the configuration category, and under tools category for change your personal gestures.
 
-##Available vocabularies:##
+## Available vocabularies: ##
 
 The following vocabularies are distributed with the same license as the add-on, contain information freely published on-line and do not intend to replace official vocabularies:
 
