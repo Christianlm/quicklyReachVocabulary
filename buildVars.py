@@ -19,9 +19,9 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""Allows you to quickly reach the meaning of the  selected word from the available vocabularies."""),
 	# version
-	"addon_version" : "0.8-dev",
+	"addon_version" : "0.9-dev",
 	# Author(s)
-	"addon_author" : u"Chris Leo <llajta2012@gmail.com>",
+	"addon_author" : u"Chris Leo Mameli <llajta2012@gmail.com>",
 	# URL for the add-on documentation support
 	"addon_url" : "https://github.com/Christianlm",
 	# Documentation file name

@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Quickly Reach Vocabulary v. 0.6.0 add-on for NVDA SCREEN READER.
+# Quickly Reach Vocabulary v. 0.9 add-on for NVDA SCREEN READER.
 # Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
@@ -59,7 +59,8 @@ class downloadDialog(wx.Dialog):
 		mainSizer.Add(sizerHelper.sizer, border=guiHelper.BORDER_FOR_DIALOGS, flag=wx.ALL)
 		self.Sizer = mainSizer
 		mainSizer.Fit(self)
-		self.Center(wx.BOTH | wx.CENTER_ON_SCREEN)
+		self.CentreOnScreen()
+		#self.Center(wx.BOTH | wx.CENTER_ON_SCREEN)
 		wx.CallAfter(self.Show)
 
 	def onOk(self, evt):
