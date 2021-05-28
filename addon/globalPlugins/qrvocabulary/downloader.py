@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 # Quickly Reach Vocabulary v. 0.9 add-on for NVDA SCREEN READER.
-# Copyright (C)2017-2019 by Chris Leo <llajta2012ATgmail.com>
+# Copyright (C)2017-2021 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
 #See the file COPYING for more details.
