@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 
-# Quickly Reach Vocabulary v. 0.9-dev py3 add-on for NVDA SCREEN READER.
-# Last update 28 may 2021 11:00.
-# Copyright (C)2017-2021 by Chris Leo <llajta2012ATgmail.com>
+# Quickly Reach Vocabulary v. 1.0-dev add-on for NVDA SCREEN READER.
+# Last update 2 Apr 2022
+# Copyright (C)2017-2022 by Chris Leo <llajta2012ATgmail.com>
 # Released under GPL 2
 #This file is covered by the GNU General Public License.
 #See the file COPYING for more details.
@@ -30,8 +30,10 @@ import threading
 import tones
 import ui
 import wx
-#  download and instal the vocabularies.
-from . import downloader
+from .skipTranslation import translate
+import re
+from urllib.request import urlopen, Request
+import json
 
 addonHandler.initTranslation()
 
@@ -79,24 +81,29 @@ def loadVocabulary():
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
-	try:
-		scriptCategory = unicode(ADDON_SUMMARY)
-	except NameError:
-		scriptCategory = str(ADDON_SUMMARY)
+	scriptCategory = ADDON_SUMMARY
 
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 
-	# menu for download and instal the vocabularies.
-		self.toolsMenu = gui.mainFrame.sysTrayIcon.toolsMenu
-		self.vocabulary = self.toolsMenu.Append(wx.ID_ANY, _("Download Vocabularies."), _("Download Vocabularies..."))
-		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, downloader.toDownloader, self.vocabulary)
+	# menu to  upgrade.
+		self.menu = gui.mainFrame.sysTrayIcon.toolsMenu
+		self.qrVocabularyMenu = wx.Menu()
+		# Translators: name of a submenu.
+		self.mainItem = self.menu.AppendSubMenu(self.qrVocabularyMenu, _("Qr Vocabulary"))
+		# Translators: the name of a menu item.
+		self.vocabularyItem = self.qrVocabularyMenu.Append(wx.ID_ANY, _("&Search in the vocabulary."))
+		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.onVocSearchDialog, self.vocabularyItem)
+		# Translators: the name of a menu item.
+		self.upgradeItem = self.qrVocabularyMenu.Append(wx.ID_ANY, _("&Check updates"))
+		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.toGetUpdate, self.upgradeItem)
+
 
 		NVDASettingsDialog.categoryClasses.append(vocabularySettingsPanel)
 
 	def terminate(self):
 		try:
-			self.toolsMenu.Remove(self.vocabulary)
+			self.menu.Remove(self.mainItem)
 			NVDASettingsDialog.categoryClasses.remove(vocabularySettingsPanel)
 		except: #(RuntimeError, AttributeError, wx.PyDeadObjectError):
 			pass
@@ -184,6 +191,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def onVocSearchDialog(self, evt):
 		gui.mainFrame._popupSettingsDialog(vocSearchDialog)
 
+	def onCheckUpdatesDialog(self, evt):
+		gui.mainFrame._popupSettingsDialog(checkUpdatesDialog)
+
+
 	def onSettings(self, evt):
 		gui.mainFrame._popupSettingsDialog(NVDASettingsDialog, vocabularySettingsPanel)
 
@@ -194,6 +205,41 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	)
 	def script_settings(self, gesture):
 		wx.CallAfter(self.onSettings, None)
+
+	# Script to switch between vocabularies.
+	@script(
+		description=_(
+			# Translators: input help to switch between vocabularies.
+			"switches between vocabularies"
+		)
+	)
+	def script_toggleVocabularies(tself,gesture):
+		usedVocabulary=config.conf["vocabulary"]["myvocabulary"]
+		if usedVocabulary==1:
+			usedVocabulary=0
+			# Translators: message when switch to Spanish vocabulary.
+			ui.message(_("Spanish vocabulary"))
+		else:
+			usedVocabulary=1
+			# Translators: message when switch to Italian vocabulary.
+			ui.message(_("Italian vocabulary"))
+		config.conf["vocabulary"]["myvocabulary"]=usedVocabulary
+
+	def toGetUpdate(self, evt):
+		version = addonHandler.getCodeAddon().manifest["version"]
+		h = "iuuqt;00bqj/hjuivc/dpn0sfqpt0Disjtujbomn0rvjdlmzSfbdiWpdbcvmbsz0sfmfbtft0mbuftu"
+		req = Request("".join(map(lambda x: chr(ord(x) - 1), h)))
+		res = urlopen(req)
+		results = {}
+		results.update(json.load(res))
+		res.close()
+		ASSETS = results.get("assets")
+		browserDownloadUrl = ASSETS[0].get("browser_download_url")
+		remoteVersion = re.search("(?P<name>)-(?P<version>.*).nvda-addon", browserDownloadUrl.split("/")[-1]).groupdict()["version"]
+		if remoteVersion != version:
+			wx.CallAfter(self.onCheckUpdatesDialog, None)
+		else:
+			ui.browseableMessage(_("The current version {ver} is the latest.").format(ver=version), _("qrVocabulary is up to date!"))
 
 class vocabularySettingsPanel(SettingsPanel):
 	# Translators: Title of the vocabulary settings dialog.
@@ -252,3 +298,52 @@ class vocSearchDialog(wx.Dialog):
 			# Translators: Title of warning dialog.
 			_("NotFound!"),
 			wx.OK)
+
+# New Version Notification.
+class checkUpdatesDialog(wx.Dialog):
+
+	def __init__(self, parent):
+
+		CHANGES = self.changesLog()
+
+		# Translators: The title of the check  updates dialog.
+		super(checkUpdatesDialog,self).__init__(parent,title=_("New Version Notification"))
+		mainSizer=wx.BoxSizer(wx.VERTICAL)
+		sizerHelper = guiHelper.BoxSizerHelper(self, orientation=wx.VERTICAL)
+		# Translators: Message displayed when updates are available.
+		sizerHelper.addItem(wx.StaticText(self, label=CHANGES))
+		bHelper = sizerHelper.addDialogDismissButtons(guiHelper.ButtonHelper(wx.HORIZONTAL))
+		# Translators: The label of a button.
+		label = _("Proceed to &download page")
+		self.upgradeButton = bHelper.addButton(self, label=label)
+		self.upgradeButton.Bind(wx.EVT_BUTTON, self.onUpgrade)
+
+		closeButton = bHelper.addButton(self, wx.ID_CLOSE, label=translate("&Close"))
+		closeButton.Bind(wx.EVT_BUTTON, self.onClose)
+		self.Bind(wx.EVT_CLOSE, lambda evt: self.onClose)
+		self.EscapeId = wx.ID_CLOSE
+
+		mainSizer.Add(sizerHelper.sizer, border=guiHelper.BORDER_FOR_DIALOGS, flag=wx.ALL)
+		self.Sizer = mainSizer
+		mainSizer.Fit(self)
+		self.CentreOnScreen()
+		wx.CallAfter(self.Show)
+
+	def changesLog(self):
+		h = "iuuqt;00bqj/hjuivc/dpn0sfqpt0Disjtujbomn0rvjdlmzSfbdiWpdbcvmbsz0sfmfbtft0mbuftu"
+		req = Request("".join(map(lambda x: chr(ord(x) - 1), h)))
+		res = urlopen(req)
+		results = {}
+		results.update(json.load(res))
+		res.close()
+		CHANGES = results.get("body")
+		return CHANGES
+
+	def onUpgrade(self, evt):
+		downloadPage = "https://christianlm.github.io/qrVocabulary/"
+		os.startfile(downloadPage)
+		self.Destroy()
+
+	def onClose(self, evt):
+		self.Destroy()
+
