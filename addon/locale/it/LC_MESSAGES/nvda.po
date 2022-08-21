@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'qrvocabulary' '0.8-dev'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2020-02-18 00:33+0100\n"
-"PO-Revision-Date: 2020-02-18 10:55+0100\n"
-"Last-Translator: Chris\n"
+"POT-Creation-Date: 2022-08-21 10:22+0200\n"
+"PO-Revision-Date: 2022-08-21 10:33+0100\n"
+"Last-Translator: Chris <llajta2012@gmail.com>\n"
 "Language-Team: nvdatranslations <LL@li.org>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,31 @@ msgstr ""
 "X-Generator: Poedit 1.6.11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: addon\globalPlugins\qrvocabulary\__init__.py:51
+#: addon\globalPlugins\qrvocabulary\__init__.py:54
 msgid "Spanish Vocabulary"
 msgstr "Diccionario de la lengua Española"
 
-#: addon\globalPlugins\qrvocabulary\__init__.py:52
+#: addon\globalPlugins\qrvocabulary\__init__.py:55
 msgid "Italian Vocabulary"
 msgstr "Vocabolario Italiano"
 
-#: addon\globalPlugins\qrvocabulary\__init__.py:91
-msgid "Download Vocabularies."
-msgstr "Scarica i vocabolari"
+#. Translators: name of a submenu.
+#: addon\globalPlugins\qrvocabulary\__init__.py:93
+msgid "Qr Vocabulary"
+msgstr "Qr Vocabulary"
 
-#: addon\globalPlugins\qrvocabulary\__init__.py:91
-msgid "Download Vocabularies..."
-msgstr "Download in corso..."
+#. Translators: the name of a menu item.
+#: addon\globalPlugins\qrvocabulary\__init__.py:95
+msgid "&Search in the vocabulary."
+msgstr "Cerca nel &vocabolario."
+
+#. Translators: the name of a menu item.
+#: addon\globalPlugins\qrvocabulary\__init__.py:98
+msgid "&Check updates"
+msgstr "&Controlla Aggiornamenti."
 
 #. Translators: Message presented in input help mode.
-#: addon\globalPlugins\qrvocabulary\__init__.py:107
+#: addon\globalPlugins\qrvocabulary\__init__.py:114
 msgid ""
 "Announces the meaning of selected or typed word found in the vocabulary."
 msgstr ""
@@ -43,7 +50,7 @@ msgstr ""
 "della parola selezionata."
 
 #. Translators: message when any vocabulary is installed:
-#: addon\globalPlugins\qrvocabulary\__init__.py:114
+#: addon\globalPlugins\qrvocabulary\__init__.py:121
 msgid ""
 "No vocabularies Installed. You can download vocabularies from tools menu."
 msgstr ""
@@ -51,39 +58,39 @@ msgstr ""
 "Strumenti di NVDA. "
 
 #. Translators: Message presented in input help mode.
-#: addon\globalPlugins\qrvocabulary\__init__.py:134
+#: addon\globalPlugins\qrvocabulary\__init__.py:141
 msgid "Search in the vocabulary the meaning of the word on clipboard."
 msgstr ""
 "Cerca nel vocabolario il significato della parola contenuta negli appunti."
 
 #. translators: message spoken when the clipboard is empty
-#: addon\globalPlugins\qrvocabulary\__init__.py:143
+#: addon\globalPlugins\qrvocabulary\__init__.py:150
 msgid "There is no text on the clipboard"
 msgstr "Non è presente testo negli appunti."
 
 #. Translators: message when there is more than one word on clipboard.
-#: addon\globalPlugins\qrvocabulary\__init__.py:151
+#: addon\globalPlugins\qrvocabulary\__init__.py:158
 msgid "Too much text on clipboard. Invalid keyword."
 msgstr "Gli appunti contengono molto testo. Parola chiave non valida."
 
 #. Translators: Message presented in input help mode.
-#: addon\globalPlugins\qrvocabulary\__init__.py:159
+#: addon\globalPlugins\qrvocabulary\__init__.py:166
 msgid "Retrieves the last result found in the vocabulary."
 msgstr "Recupera l'ultima ricerca nel vocabolario"
 
 #. Translators: title of browseable message box.
-#: addon\globalPlugins\qrvocabulary\__init__.py:168
-#: addon\globalPlugins\qrvocabulary\__init__.py:245
+#: addon\globalPlugins\qrvocabulary\__init__.py:175
+#: addon\globalPlugins\qrvocabulary\__init__.py:293
 msgid "From {vocs}"
 msgstr "Dal {vocs}"
 
 #. translators: message when  there are no recent searches in the vocabulary
-#: addon\globalPlugins\qrvocabulary\__init__.py:171
+#: addon\globalPlugins\qrvocabulary\__init__.py:178
 msgid "There is no recent research in the vocabulary."
 msgstr "Non è presente alcuna ricerca recente nel vocabolario."
 
-#: addon\globalPlugins\qrvocabulary\__init__.py:178
-#: addon\globalPlugins\qrvocabulary\__init__.py:243
+#: addon\globalPlugins\qrvocabulary\__init__.py:185
+#: addon\globalPlugins\qrvocabulary\__init__.py:291
 #, python-format
 msgid ""
 "Found \"{thisword}\":\n"
@@ -94,106 +101,75 @@ msgstr ""
 
 #. Translator: message when the searched word is not present in the dictionary.
 #. Translator: message when the searched word is not present in the vocabulary.
-#: addon\globalPlugins\qrvocabulary\__init__.py:182
-#: addon\globalPlugins\qrvocabulary\__init__.py:249
+#: addon\globalPlugins\qrvocabulary\__init__.py:189
+#: addon\globalPlugins\qrvocabulary\__init__.py:297
 msgid "Sorry, no match found for {thisword}. Selected vocabulary: {vocs}."
 msgstr ""
 "Spiacente, nessuna corrispondenza trovata per {thisword}. Vocabolario in "
 "uso: {vocs}."
 
 #. Translators: Message presented in input help mode.
-#: addon\globalPlugins\qrvocabulary\__init__.py:193
+#: addon\globalPlugins\qrvocabulary\__init__.py:204
 msgid "Shows settings for available vocabularies."
 msgstr "Visualizza le impostazioni per i vocabolari disponibili."
 
+#. Translators: input help to switch between vocabularies.
+#: addon\globalPlugins\qrvocabulary\__init__.py:213
+msgid "switches between vocabularies"
+msgstr "Cambia rapidamente la selezione del vocabolario tra i disponibili."
+
+#. Translators: message when switch to Spanish vocabulary.
+#: addon\globalPlugins\qrvocabulary\__init__.py:221
+msgid "Spanish vocabulary"
+msgstr "Diccionario de la lengua Española"
+
+#. Translators: message when switch to Italian vocabulary.
+#: addon\globalPlugins\qrvocabulary\__init__.py:225
+msgid "Italian vocabulary"
+msgstr "Vocabolario Italiano"
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:242
+msgid "The current version {ver} is the latest."
+msgstr "La versione  {ver} è aggiornata."
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:242
+msgid "qrVocabulary is up to date!"
+msgstr "qrVocabulary è aggiornato."
+
 #. Translators: Title of the vocabulary settings dialog.
-#: addon\globalPlugins\qrvocabulary\__init__.py:200
+#: addon\globalPlugins\qrvocabulary\__init__.py:246
 msgid "Vocabulary Settings"
 msgstr "Vocabolario"
 
 #. Translators: The label for  list in the vocabulary settings dialog.
-#: addon\globalPlugins\qrvocabulary\__init__.py:203
+#: addon\globalPlugins\qrvocabulary\__init__.py:249
 msgid "Select your vocabulary:"
 msgstr "Seleziona un vocabolario:"
 
 #. Translators: The title of the dialog.
-#: addon\globalPlugins\qrvocabulary\__init__.py:222
+#: addon\globalPlugins\qrvocabulary\__init__.py:268
 msgid "Search on {vocs}."
 msgstr "Cerca nel {vocs}."
 
 #. Translators: The label of an edit box in the  Search dialog.
-#: addon\globalPlugins\qrvocabulary\__init__.py:226
+#: addon\globalPlugins\qrvocabulary\__init__.py:272
 msgid "&Type a word:"
 msgstr "&Digita una parola:"
 
 #. Translators: Title of warning dialog.
-#: addon\globalPlugins\qrvocabulary\__init__.py:251
+#: addon\globalPlugins\qrvocabulary\__init__.py:299
 msgid "NotFound!"
 msgstr "Nessuna occorrenza trovata."
 
-#: addon\globalPlugins\qrvocabulary\downloader.py:40
-msgid "Get Vocabularies"
-msgstr "Scarica i vocabolari"
+#. Translators: The title of the check  updates dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:310
+msgid "New Version Notification"
+msgstr "Nuova versione disponibile."
 
-#: addon\globalPlugins\qrvocabulary\downloader.py:43
-msgid ""
-"The available vocabularies are:\n"
-"\n"
-"        Spanish vocabulary;\n"
-"\n"
-"        Italian vocabulary.\n"
-"\n"
-"        Press Ok button to download and install teh vocabularies."
-msgstr ""
-"Sono disponibili i seguenti vocabolari:\n"
-"\n"
-"        Dizionario Spagnolo;\n"
-"\n"
-"        Dizionario Italiano.\n"
-"\n"
-"        Premere Ok per scaricare e installare i vocabolari."
-
-#: addon\globalPlugins\qrvocabulary\downloader.py:49
-msgid "&Ok"
-msgstr "&Ok"
-
-#: addon\globalPlugins\qrvocabulary\downloader.py:77
-#, python-format
-msgid " Already downloaded! %s, press Ok to install."
-msgstr " I vocabolari risultano già scaricati: %s. Premere Ok per installare."
-
-#: addon\globalPlugins\qrvocabulary\downloader.py:78
-msgid "Warning"
-msgstr "Attenzione! "
-
-#. Translators: title of progres bar dialog.
-#: addon\globalPlugins\qrvocabulary\downloader.py:82
-msgid "Downloading vocabularies"
-msgstr "Download dei vocabolari in corso"
-
-#. Translators: message on progres dialog.
-#: addon\globalPlugins\qrvocabulary\downloader.py:84
-msgid "Please wait... "
-msgstr "Prego attendere..."
-
-#: addon\globalPlugins\qrvocabulary\downloader.py:105
-#: addon\globalPlugins\qrvocabulary\downloader.py:122
-msgid "Downloaded "
-msgstr "Scaricati "
-
-#: addon\globalPlugins\qrvocabulary\downloader.py:106
-msgid " of "
-msgstr " di "
-
-#. Translators: installation  message
-#: addon\globalPlugins\qrvocabulary\downloader.py:131
-msgid "Setup was completed successfully!"
-msgstr "Installazione completata!"
-
-#. Translators: Title of warning dialog.
-#: addon\globalPlugins\qrvocabulary\downloader.py:133
-msgid "Vocabularies setup: "
-msgstr "Installazione dei vocabolari: "
+#. Translators: The label of a button.
+#: addon\globalPlugins\qrvocabulary\__init__.py:317
+msgid "Proceed to &download page"
+msgstr "Vai alla pagina di &download."
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
@@ -210,6 +186,54 @@ msgid ""
 msgstr ""
 "Cerca e legge  il significato della parola selezionata se disponibile nel "
 "vocabolario. "
+
+#~ msgid "Download Vocabularies."
+#~ msgstr "Scarica i vocabolari"
+
+#~ msgid "Download Vocabularies..."
+#~ msgstr "Download in corso..."
+
+#~ msgid ""
+#~ "The available vocabularies are:\n"
+#~ "\n"
+#~ "        Spanish vocabulary;\n"
+#~ "\n"
+#~ "        Italian vocabulary.\n"
+#~ "\n"
+#~ "        Press Ok button to download and install teh vocabularies."
+#~ msgstr ""
+#~ "Sono disponibili i seguenti vocabolari:\n"
+#~ "\n"
+#~ "        Dizionario Spagnolo;\n"
+#~ "\n"
+#~ "        Dizionario Italiano.\n"
+#~ "\n"
+#~ "        Premere Ok per scaricare e installare i vocabolari."
+
+#~ msgid "&Ok"
+#~ msgstr "&Ok"
+
+#~ msgid " Already downloaded! %s, press Ok to install."
+#~ msgstr ""
+#~ " I vocabolari risultano già scaricati: %s. Premere Ok per installare."
+
+#~ msgid "Warning"
+#~ msgstr "Attenzione! "
+
+#~ msgid "Downloading vocabularies"
+#~ msgstr "Download dei vocabolari in corso"
+
+#~ msgid "Please wait... "
+#~ msgstr "Prego attendere..."
+
+#~ msgid "Downloaded "
+#~ msgstr "Scaricati "
+
+#~ msgid " of "
+#~ msgstr " di "
+
+#~ msgid "Setup was completed successfully!"
+#~ msgstr "Installazione completata!"
 
 #~ msgid "No vocabularies Installed!"
 #~ msgstr "Nessun vocabolario installato."
@@ -231,9 +255,6 @@ msgstr ""
 
 #~ msgid "Downloading %s"
 #~ msgstr "Download del pacchetto %s in corso..."
-
-#~ msgid "Extracting the vocabularies"
-#~ msgstr "Installazione dei vocabolari in corso..."
 
 #~ msgid ""
 #~ "Seems that there are no vocabularies installed.\n"
