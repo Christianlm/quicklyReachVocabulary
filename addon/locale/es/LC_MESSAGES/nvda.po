@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: qrVocabulary1.0-dev\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2022-10-19 10:22+0200\n"
+"PO-Revision-Date: 2022-10-19 16:52+0100\n"
+"Last-Translator: Chris <llajta2012@gmail.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.11\n"
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:54
+msgid "Spanish Vocabulary"
+msgstr "Diccionario de la lengua Española"
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:55
+msgid "Italian Vocabulary"
+msgstr "Diccionario Italiano"
+
+#. Translators: name of a submenu.
+#: addon\globalPlugins\qrvocabulary\__init__.py:93
+msgid "Qr Vocabulary"
+msgstr "Qr Vocabulary"
+
+#. Translators: the name of a menu item.
+#: addon\globalPlugins\qrvocabulary\__init__.py:95
+msgid "&Search in the vocabulary."
+msgstr "&Buscar en el vocabulario."
+
+#. Translators: the name of a menu item.
+#: addon\globalPlugins\qrvocabulary\__init__.py:98
+msgid "&Check updates"
+msgstr "Revisa &actualizaciones"
+
+#. Translators: Message presented in input help mode.
+#: addon\globalPlugins\qrvocabulary\__init__.py:114
+msgid ""
+"Announces the meaning of selected or typed word found in the vocabulary."
+msgstr ""
+"Anuncia el significado de la palabra seleccionada si se encuentra en el "
+"vocabulario."
+
+#. Translators: message when any vocabulary is installed:
+#: addon\globalPlugins\qrvocabulary\__init__.py:121
+msgid ""
+"No vocabularies Installed. You can download vocabularies from tools menu."
+msgstr ""
+"No hay vocabularios instalados. Puede descargar vocabularios desde el menú "
+"de herramientas."
+
+#. Translators: Message presented in input help mode.
+#: addon\globalPlugins\qrvocabulary\__init__.py:141
+msgid "Search in the vocabulary the meaning of the word on clipboard."
+msgstr ""
+"Busca en el vocabulario el significado de la palabra en el portapapeles."
+
+#. translators: message spoken when the clipboard is empty
+#: addon\globalPlugins\qrvocabulary\__init__.py:150
+msgid "There is no text on the clipboard"
+msgstr "No hay texto en el portapapeles."
+
+#. Translators: message when there is more than one word on clipboard.
+#: addon\globalPlugins\qrvocabulary\__init__.py:158
+msgid "Too much text on clipboard. Invalid keyword."
+msgstr "Demasiado texto en el portapapeles. Palabra clave no válida."
+
+#. Translators: Message presented in input help mode.
+#: addon\globalPlugins\qrvocabulary\__init__.py:166
+msgid "Retrieves the last result found in the vocabulary."
+msgstr "Recupera el último resultado encontrado en el vocabulario."
+
+#. Translators: title of browseable message box.
+#: addon\globalPlugins\qrvocabulary\__init__.py:175
+#: addon\globalPlugins\qrvocabulary\__init__.py:293
+msgid "From {vocs}"
+msgstr "Del {vocs}"
+
+#. translators: message when  there are no recent searches in the vocabulary
+#: addon\globalPlugins\qrvocabulary\__init__.py:178
+msgid "There is no recent research in the vocabulary."
+msgstr "No hay recientes resultado de búsqueda en el vocabulario."
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:185
+#: addon\globalPlugins\qrvocabulary\__init__.py:291
+#, python-format
+msgid ""
+"Found \"{thisword}\":\n"
+" %s"
+msgstr ""
+"Encontrado\"{thisword}\":\n"
+" %s"
+
+#. Translator: message when the searched word is not present in the dictionary.
+#. Translator: message when the searched word is not present in the vocabulary.
+#: addon\globalPlugins\qrvocabulary\__init__.py:189
+#: addon\globalPlugins\qrvocabulary\__init__.py:297
+msgid "Sorry, no match found for {thisword}. Selected vocabulary: {vocs}."
+msgstr ""
+"No se encontró ninguna coincidencia para {thisword}. Vocabulario "
+"seleccionado: {vocs}."
+
+#. Translators: Message presented in input help mode.
+#: addon\globalPlugins\qrvocabulary\__init__.py:204
+msgid "Shows settings for available vocabularies."
+msgstr "Muestra la configuración de los vocabularios disponibles."
+
+#. Translators: input help to switch between vocabularies.
+#: addon\globalPlugins\qrvocabulary\__init__.py:213
+msgid "switches between vocabularies"
+msgstr "Cambia entre los vocabularios"
+
+#. Translators: message when switch to Spanish vocabulary.
+#: addon\globalPlugins\qrvocabulary\__init__.py:221
+msgid "Spanish vocabulary"
+msgstr "Diccionario de la lengua Española."
+
+#. Translators: message when switch to Italian vocabulary.
+#: addon\globalPlugins\qrvocabulary\__init__.py:225
+msgid "Italian vocabulary"
+msgstr "Diccionario Italiano"
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:242
+msgid "The current version {ver} is the latest."
+msgstr "la versión actual {ver} es la última."
+
+#: addon\globalPlugins\qrvocabulary\__init__.py:242
+msgid "qrVocabulary is up to date!"
+msgstr "El complemento qrVocabulary está actualizado!"
+
+#. Translators: Title of the vocabulary settings dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:246
+msgid "Vocabulary Settings"
+msgstr "Configuración de qrVocabulary"
+
+#. Translators: The label for  list in the vocabulary settings dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:249
+msgid "Select your vocabulary:"
+msgstr "Selecciona tu vocabulario:"
+
+#. Translators: The title of the dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:268
+msgid "Search on {vocs}."
+msgstr "Buscar en {vocs}."
+
+#. Translators: The label of an edit box in the  Search dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:272
+msgid "&Type a word:"
+msgstr "Teclea la palabra que deseas encontrar:"
+
+#. Translators: Title of warning dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:299
+msgid "NotFound!"
+msgstr "¡No encontrado!"
+
+#. Translators: The title of the check  updates dialog.
+#: addon\globalPlugins\qrvocabulary\__init__.py:310
+msgid "New Version Notification"
+msgstr "Notificación de nueva versión"
+
+#. Translators: The label of a button.
+#: addon\globalPlugins\qrvocabulary\__init__.py:317
+msgid "Proceed to &download page"
+msgstr "ir  a la página de &descarga"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
+#: buildVars.py:17
+msgid "Quickly reach vocabulary"
+msgstr "Quickly reach vocabulary"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:20
+msgid ""
+"Allows you to quickly reach the meaning of the  selected word from the "
+"available vocabularies."
+msgstr ""
+"Permite alcanzar rápidamente el significado de la palabra seleccionada en "
+"los vocabularios disponibles."

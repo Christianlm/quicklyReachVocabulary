@@ -1,6 +1,6 @@
 # Quickly Reach Vocabulary #
 
-*	Authors: Christian Leo llajta2012ATgmail.com
+*	Author: Christian Leo Mameli [Twitter](https://twitter.com/llajta2012)
 *	NVDA compatibility:2019.3 or later
 
 Allows you to quickly reach the meaning of a selected word, or open an edit box to search from the vocabulary.
@@ -29,3 +29,5 @@ The following vocabularies are distributed with the same license as the add-on, 
 *	Spanish vocabulary;
 *	Italian vocabulary.
 
+
+[Twitter](https://twitter.com/llajta2012)
